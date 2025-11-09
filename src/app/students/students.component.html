@@ -15,19 +15,15 @@
                 <div class="form-group">
                     <input #contact class="form-control" placeholder="Contact">
                 </div>
-                <button
-                *ngIf = '!isEditMode'
-                (click) = 'onAddStd()'
-                class="btn-block" mat-raised-button color="primary">Add Student</button>
-                <button
-                *ngIf = 'isEditMode'
-                (click) = 'onUpdateStd()'
-                class="btn-block" mat-raised-button color="primary">Update Student</button>
+                <button *ngIf='!isEditMode' (click)='onAddStd()' class="btn-block" mat-raised-button color="primary">Add
+                    Student</button>
+                <button *ngIf='isEditMode' (click)='onUpdateStd()' class="btn-block" mat-raised-button
+                    color="primary">Update Student</button>
             </div>
         </div>
     </div>
     <div class="col-md-8">
-        <div class="table-responsive">
+        <div class="table-responsive" *ngIf='stdArr.length > 0; else noStd'>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -39,30 +35,32 @@
                         <th>Remove</th>
                     </tr>
                 </thead>
-                <tbody *ngIf = 'stdArr.length > 0; else noStd'>
-                    <tr
-                    *ngFor = 'let std of stdArr; let i = index'
-                    >
+                <tbody>
+                    <tr *ngFor='let std of stdArr; let i = index'>
                         <td>{{i+1}}</td>
                         <td class="text-capitalize">{{std.fname}} {{std.lname}}</td>
                         <td>{{std.email}}</td>
                         <td>{{std.contact}}</td>
-                        <td>
-                            <button
-                            (click) = 'onEditStd(std)'
-                            class="btn-sm"  mat-raised-button color="primary">Edit</button>
+                        <td class="text-center">
+                            <!-- <button (click)='onEditStd(std)' class="btn-sm" mat-raised-button
+                                color="primary">Edit</button> -->
+                            <button (click)='onEditStd(std)' mat-icon-button color="primary" aria-label="Example icon button with a delete icon">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                         </td>
-                        <td>
-                            <button 
-                            (click) ='onRemoveStd(std)'
-                            class="btn-sm"  mat-raised-button color="warn">Remove</button>
+                        <td class="text-center">
+                            <!-- <button [disabled]="isEditMode" (click)="onRemoveStd(std)" class="btn-sm" mat-raised-button
+                                color="warn">Remove</button> -->
+                            <button [disabled]="isEditMode" (click)="onRemoveStd(std)" mat-icon-button color="warn" aria-label="Example icon button with a delete icon">
+                                <mat-icon>delete</mat-icon>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <ng-template #noStd>
-                    <P class="alert alert-success">The students details not added yet !!!</P>
-                </ng-template>
         </div>
+        <ng-template #noStd>
+            <P class="alert alert-success">The students details not added yet !!!</P>
+        </ng-template>
     </div>
 </div>

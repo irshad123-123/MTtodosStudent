@@ -69,10 +69,11 @@ export class StudentsComponent implements OnInit {
       horizontalPosition : 'left'
     })
   }
+
   onEditStd(std:Istudents): void{
     let Edit_Id = std.stdId;
     // console.log(Edit_Id)
-    localStorage.setItem('Edit_Id', Edit_Id)
+    localStorage.setItem('Edit_Id',Edit_Id)
     this.fnameRef.nativeElement.value = std.fname
     this.lnameRef.nativeElement.value = std.lname
     this.emailRef.nativeElement.value = std.email
