@@ -50,7 +50,12 @@ export class StudentsComponent implements OnInit {
     });
   };
   onAddStd(): void{
-    let stdObj = {
+    if(this.fnameRef.nativeElement.value.length > 0 &&
+      this.lnameRef.nativeElement.value.length > 0 &&
+      this.emailRef.nativeElement.value.length > 0 &&
+      this.contactRef.nativeElement.value.length > 0
+    ){
+      let stdObj = {
       fname : this.fnameRef.nativeElement.value,
       lname : this.lnameRef.nativeElement.value,
       email : this.emailRef.nativeElement.value,
@@ -68,6 +73,7 @@ export class StudentsComponent implements OnInit {
       verticalPosition : 'top',
       horizontalPosition : 'left'
     })
+    }
   }
 
   onEditStd(std:Istudents): void{

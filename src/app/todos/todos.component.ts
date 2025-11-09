@@ -39,7 +39,8 @@ export class TodosComponent implements OnInit {
   };
 
   onAddTodo(): void{
-    let todoObj ={
+    if(this.todoRef.nativeElement.value.length > 0){
+      let todoObj ={
       todoItem : this.todoRef.nativeElement.value,
       todoId : this.Uuid()
     }
@@ -51,6 +52,7 @@ export class TodosComponent implements OnInit {
       verticalPosition:'top',
       horizontalPosition:'left'
     })
+    }
   }
 
   onEditTodo(todo:ItodoArr): void{
